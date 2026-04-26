@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "semantic-chunker"
+version = "0.1.0"
+description = "Semantic text chunker using embedding similarity breakpoints"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "learnrag" }]
+dependencies = [
+    "numpy>=1.26",
+    "sentence-transformers>=3.0",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "httpx>=0.27"]
+
+[project.scripts]
+chunker = "chunker.cli:main"
+chunker-api = "chunker.api:run"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/chunker"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = [
+    "integration: tests that download or run a real embedding model",
+]
