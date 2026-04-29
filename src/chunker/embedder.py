@@ -87,3 +87,54 @@ class MockEmbedder:
         values = np.frombuffer(digest * ((self._dimension // 32) + 1), dtype=np.uint8)
         values = values[: self._dimension].astype(np.float64)
         return (values / 127.5) - 1.0
+
+
+class SentenceTransformerEmbedder:
+    """Local sentence-transformers wrapper (model name is injectable)."""
+
+    def __init__(
+        self,
+        model_name: str = "sentence-transformers/all-MiniLM-L6-v2",
+        *,
+        normalize: bool = True,
+        revision: str | None = None,
+    ) -> None:
+        from sentence_transformers import SentenceTransformer
+
+        kwargs: dict = {}
+        if revision is not None:
+            kwargs["revision"] = revision
+        self._model = SentenceTransformer(model_name, **kwargs)
+        self._model_name = model_name
+        self._revision = revision
+        self._normalize = normalize
+        # Probe dimension with a tiny encode.
+        probe = self._model.encode(["dimension probe"], normalize_embeddings=False)
+        self._dimension = int(np.asarray(probe).shape[-1])
+
+    @property
+    def model_name(self) -> str:
+        if self._revision:
+            return f"{self._model_name}@{self._revision}"
+        return self._model_name
+
+    @property
+    def dimension(self) -> int:
+        return self._dimension
+
+    @property
+    def normalizes(self) -> bool:
+        return self._normalize
+
+    def embed(self, texts: list[str]) -> np.ndarray:
+        if not texts:
+            return np.zeros((0, self._dimension), dtype=np.float64)
+        matrix = np.asarray(
+            self._model.encode(
+                texts,
+                normalize_embeddings=self._normalize,
+                show_progress_bar=False,
+            ),
+            dtype=np.float64,
+        )
+        return validate_embeddings(matrix, len(texts))
