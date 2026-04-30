@@ -99,7 +99,13 @@ class SentenceTransformerEmbedder:
         normalize: bool = True,
         revision: str | None = None,
     ) -> None:
-        from sentence_transformers import SentenceTransformer
+        try:
+            from sentence_transformers import SentenceTransformer
+        except ImportError as exc:
+            raise ImportError(
+                "sentence-transformers is required for local embeddings. "
+                "Install with: pip install 'semantic-chunker[embed]'"
+            ) from exc
 
         kwargs: dict = {}
         if revision is not None:
