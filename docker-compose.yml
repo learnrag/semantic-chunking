@@ -1,0 +1,13 @@
+services:
+  semantic-chunker:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: "8000"
+    # Optional: cache downloaded models across restarts.
+    volumes:
+      - hf-cache:/root/.cache/huggingface
+
+volumes:
+  hf-cache:
