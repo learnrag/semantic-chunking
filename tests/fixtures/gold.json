@@ -1,0 +1,69 @@
+[
+  {
+    "id": "doc_abrupt",
+    "sentences": [
+      "Photosynthesis converts light energy into chemical energy in plants.",
+      "Chlorophyll absorbs sunlight mainly in the blue and red wavelengths.",
+      "Carbon dioxide and water are the key inputs to the Calvin cycle.",
+      "The stock market rose sharply after the interest rate announcement.",
+      "Investors rotated from bonds into technology equities overnight.",
+      "Analysts revised quarterly earnings forecasts for major banks."
+    ],
+    "gold_boundaries": [2]
+  },
+  {
+    "id": "doc_gradual",
+    "sentences": [
+      "Machine learning models learn patterns from training data.",
+      "Supervised learning uses labeled examples to predict outcomes.",
+      "Neural networks stack layers of nonlinear transformations.",
+      "Deep models need large datasets and careful regularization.",
+      "Overfitting happens when a model memorizes noise.",
+      "Cross-validation helps estimate generalization performance."
+    ],
+    "gold_boundaries": []
+  },
+  {
+    "id": "doc_repetitive",
+    "sentences": [
+      "The API returns a JSON object with a status field.",
+      "The API returns a JSON object with an error field when failing.",
+      "The API returns a JSON object with a data payload on success.",
+      "The API returns a JSON object with pagination metadata.",
+      "Cooking pasta requires boiling salted water first.",
+      "Drain the pasta and toss it with olive oil and garlic.",
+      "Finish with grated cheese and black pepper."
+    ],
+    "gold_boundaries": [3]
+  },
+  {
+    "id": "doc_short",
+    "sentences": [
+      "Hello world.",
+      "Goodbye world."
+    ],
+    "gold_boundaries": []
+  },
+  {
+    "id": "doc_all_similar",
+    "sentences": [
+      "Cats sleep for many hours each day.",
+      "Cats often nap in warm sunny spots.",
+      "Cats groom themselves with their tongues.",
+      "Cats communicate with meows and purrs."
+    ],
+    "gold_boundaries": []
+  },
+  {
+    "id": "doc_list_noise",
+    "sentences": [
+      "Shopping list for tonight.",
+      "Milk.",
+      "Eggs.",
+      "Bread.",
+      "Butter.",
+      "The recipe needs these ingredients for the souffle."
+    ],
+    "gold_boundaries": [0, 4]
+  }
+]
