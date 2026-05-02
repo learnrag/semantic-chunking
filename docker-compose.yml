@@ -2,7 +2,7 @@ services:
   semantic-chunker:
     build: .
     ports:
-      - "8000:8000"
+      - "8004:8000"
     environment:
       PORT: "8000"
     # Optional: cache downloaded models across restarts.

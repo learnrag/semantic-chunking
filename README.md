@@ -2,10 +2,7 @@
 
 Local, embedding-based semantic text chunker for learning RAG pipelines.
 
-It does **not** ask an LLM where to split. It embeds sentences (optionally with a
-neighbor buffer), measures adjacent cosine distance, and places boundaries where
-distance exceeds an absolute or percentile threshold — then enforces min/max
-token size.
+It does **not** ask an LLM where to split. It embeds sentences (optionally with a neighbor buffer), measures adjacent cosine distance, and places boundaries where distance exceeds an absolute or percentile threshold - then enforces min/max token size.
 
 ## Install
 
@@ -21,7 +18,7 @@ Default local model: `sentence-transformers/all-MiniLM-L6-v2`.
 ## CLI
 
 ```bash
-# Chunk to JSONL (mock embedder — no download)
+# Chunk to JSONL (mock embedder - no download)
 chunker chunk data/sample.txt --mock --percentile 95 --max-tokens 500 -o out.jsonl
 
 # Real local model
