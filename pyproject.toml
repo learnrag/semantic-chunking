@@ -34,3 +34,6 @@ pythonpath = ["src"]
 markers = [
     "integration: tests that download or run a real embedding model",
 ]
+
+[tool.vercel]
+entrypoint = "src.chunker.api:app"
